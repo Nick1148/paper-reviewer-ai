@@ -117,6 +117,10 @@ CREATE TABLE IF NOT EXISTS paper_explanations (
   key_findings JSONB NOT NULL DEFAULT '[]',
   why_it_matters TEXT NOT NULL DEFAULT '',
   technical_detail TEXT NOT NULL DEFAULT '',
+  difficulty TEXT NOT NULL DEFAULT 'intermediate'
+    CHECK (difficulty IN ('beginner', 'intermediate', 'advanced')),
+  beginner_summary TEXT NOT NULL DEFAULT '',
+  glossary JSONB NOT NULL DEFAULT '[]',
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 

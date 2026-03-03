@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import NewsletterForm from "@/components/NewsletterForm";
+import CheckIcon from "@/components/icons/CheckIcon";
 
 export const metadata: Metadata = {
   title: "뉴스레터 - 매일 AI 논문 해설 구독",
@@ -9,9 +10,10 @@ export const metadata: Metadata = {
 
 export default function NewsletterPage() {
   return (
-    <div className="px-4 py-20">
+    <>
+    <section className="bg-gradient-to-b from-blue-50 to-white px-4 pb-12 pt-16 dark:from-gray-900 dark:to-gray-950">
       <div className="mx-auto max-w-2xl text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <h1 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
           논문읽어주는AI 뉴스레터
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-gray-600 dark:text-gray-400">
@@ -22,8 +24,12 @@ export default function NewsletterPage() {
         <div className="mt-10 flex justify-center">
           <NewsletterForm />
         </div>
+      </div>
+    </section>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 text-left sm:grid-cols-3">
+    <div className="px-4 pb-20 pt-8">
+      <div className="mx-auto max-w-2xl">
+        <div className="grid grid-cols-1 gap-8 text-left sm:grid-cols-3">
           <div className="rounded-xl border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 text-lg dark:bg-blue-900/30">
               <svg className="h-5 w-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -76,56 +82,21 @@ export default function NewsletterPage() {
           </h3>
           <ul className="mt-4 space-y-3 text-left text-sm text-gray-600 dark:text-gray-400">
             <li className="flex items-start gap-2">
-              <svg
-                className="mt-0.5 h-5 w-5 shrink-0 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
+              <CheckIcon />
               매일 수백 편의 arXiv 논문 중 핵심만 선별하여 전달
             </li>
             <li className="flex items-start gap-2">
-              <svg
-                className="mt-0.5 h-5 w-5 shrink-0 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
+              <CheckIcon />
               5분 만에 읽을 수 있는 한국어 해설
             </li>
             <li className="flex items-start gap-2">
-              <svg
-                className="mt-0.5 h-5 w-5 shrink-0 text-green-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
+              <CheckIcon />
               무료, 스팸 없음, 언제든지 구독 취소 가능
             </li>
           </ul>
         </div>
       </div>
     </div>
+    </>
   );
 }

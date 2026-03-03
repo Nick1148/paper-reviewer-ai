@@ -25,7 +25,16 @@ export async function generatePaperExplanation(paper: ArxivPaper): Promise<Paper
   "summary": "5분 이해 해설 (500~800자). 비전공자도 이해할 수 있도록 비유와 쉬운 설명을 사용. 핵심 아이디어가 무엇인지, 기존 방법과 어떻게 다른지, 결과가 왜 중요한지 설명.",
   "key_findings": ["핵심 발견 1", "핵심 발견 2", "핵심 발견 3"],
   "why_it_matters": "왜 중요한지 (실용적 관점에서 설명. 이 연구가 산업계나 일상에 어떤 영향을 미칠 수 있는지, 개발자/기업이 관심을 가져야 하는 이유)",
-  "technical_detail": "기술 심화 설명 (전문가를 위한 상세 분석. 모델 아키텍처, 학습 방법, 벤치마크 결과 등 기술적 세부사항. 마크다운 형식, 500~1000자)"
+  "technical_detail": "기술 심화 설명 (전문가를 위한 상세 분석. 모델 아키텍처, 학습 방법, 벤치마크 결과 등 기술적 세부사항. 마크다운 형식, 500~1000자)",
+  "difficulty": "beginner 또는 intermediate 또는 advanced (논문 난이도. beginner: 배경지식 없이 이해 가능, intermediate: 기본 AI 개념 필요, advanced: 전문 지식 필요)",
+  "beginner_summary": "초보자를 위한 비유 중심 설명 (300자 이내). 전문 용어를 사용하지 않고, 일상적인 비유로 논문의 핵심을 설명. 예: 'AI가 시험 문제를 풀 때 연습장에 풀이 과정을 쓰면 정답률이 올라가는 것을 발견했습니다'",
+  "glossary": [
+    {
+      "term": "논문에서 사용된 주요 약어/용어 (예: CoT)",
+      "full_name": "풀네임 (예: Chain-of-Thought)",
+      "explanation": "초보자도 이해할 수 있는 한국어 설명 (예: AI가 문제를 풀 때 풀이 과정을 단계별로 적는 방법)"
+    }
+  ]
 }
 \`\`\`
 
@@ -34,6 +43,9 @@ export async function generatePaperExplanation(paper: ArxivPaper): Promise<Paper
 - summary는 비전공자가 읽어도 이해할 수 있는 수준
 - key_findings는 3~5개
 - technical_detail은 전문가용 심화 내용
+- difficulty는 반드시 "beginner", "intermediate", "advanced" 중 하나
+- beginner_summary는 전문 용어 없이 비유와 일상 언어로 작성 (300자 이내)
+- glossary는 논문 내 주요 용어 3~7개를 선별하여 초보자 눈높이로 설명
 - JSON만 출력하세요. JSON 외 다른 텍스트는 포함하지 마세요.`;
 
   try {
@@ -57,6 +69,17 @@ export async function generatePaperExplanation(paper: ArxivPaper): Promise<Paper
       keyFindings: Array.isArray(parsed.key_findings) ? parsed.key_findings as string[] : [],
       whyItMatters: (parsed.why_it_matters as string) || '',
       technicalDetail: (parsed.technical_detail as string) || '',
+      difficulty: (['beginner', 'intermediate', 'advanced'].includes(parsed.difficulty as string)
+        ? parsed.difficulty as 'beginner' | 'intermediate' | 'advanced'
+        : 'intermediate'),
+      beginnerSummary: (parsed.beginner_summary as string) || '',
+      glossary: Array.isArray(parsed.glossary)
+        ? (parsed.glossary as Array<Record<string, string>>).map(g => ({
+            term: g.term || '',
+            fullName: g.full_name || '',
+            explanation: g.explanation || '',
+          }))
+        : [],
     };
   } catch (error) {
     console.error(`[PaperExplainer] 해설 생성 실패 (${paper.title}):`, error);
@@ -71,6 +94,9 @@ export async function generatePaperExplanation(paper: ArxivPaper): Promise<Paper
       keyFindings: ['해설 생성 실패 - 원문 초록을 참조하세요.'],
       whyItMatters: '자동 해설을 생성하지 못했습니다. 원문을 직접 확인해주세요.',
       technicalDetail: `원문 링크: ${paper.arxivUrl}`,
+      difficulty: 'intermediate',
+      beginnerSummary: '',
+      glossary: [],
     };
   }
 }

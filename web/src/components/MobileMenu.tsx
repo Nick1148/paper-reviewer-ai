@@ -45,7 +45,7 @@ export default function MobileMenu() {
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
         aria-label={isOpen ? "메뉴 닫기" : "메뉴 열기"}
-        className="inline-flex items-center justify-center rounded-lg p-2 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
+        className="inline-flex items-center justify-center rounded-lg p-2.5 text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white"
       >
         {isOpen ? (
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

@@ -31,7 +31,7 @@ export default function DifficultyFilter({ onFilterChange }: DifficultyFilterPro
       <button
         onClick={() => { setSelected([]); onFilterChange([]); }}
         aria-pressed={selected.length === 0}
-        className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+        className={`rounded-full border px-3 py-2 text-xs font-medium transition-colors ${
           selected.length === 0
             ? "border-blue-300 bg-blue-100 text-blue-800 dark:border-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
             : "border-gray-200 bg-gray-100 text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
@@ -46,7 +46,7 @@ export default function DifficultyFilter({ onFilterChange }: DifficultyFilterPro
             key={d.id}
             onClick={() => toggle(d.id)}
             aria-pressed={isSelected}
-            className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+            className={`rounded-full border px-3 py-2 text-xs font-medium transition-colors ${
               isSelected
                 ? d.chipSelectedClass
                 : "border-gray-200 bg-gray-100 text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"

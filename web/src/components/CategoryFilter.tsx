@@ -32,11 +32,11 @@ export default function CategoryFilter({ categories, onFilterChange }: CategoryF
   };
 
   return (
-    <div className="flex max-h-24 flex-wrap items-center gap-2 overflow-y-auto sm:max-h-none">
+    <div className="flex max-h-28 flex-wrap items-center gap-2 overflow-y-auto sm:max-h-none">
       <button
         onClick={toggleAll}
         aria-pressed={selected.length === 0}
-        className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+        className={`rounded-full border px-3 py-2 text-xs font-medium transition-colors ${
           selected.length === 0
             ? "border-blue-300 bg-blue-100 text-blue-800 dark:border-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
             : "border-gray-200 bg-gray-100 text-gray-600 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
@@ -52,7 +52,7 @@ export default function CategoryFilter({ categories, onFilterChange }: CategoryF
             onClick={() => toggleCategory(cat.id)}
             title={cat.descriptionSimple}
             aria-pressed={isSelected}
-            className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${getCategoryChipColor(cat.id, isSelected)}`}
+            className={`rounded-full border px-3 py-2 text-xs font-medium transition-colors ${getCategoryChipColor(cat.id, isSelected)}`}
           >
             {cat.icon} {cat.nameKo}
           </button>

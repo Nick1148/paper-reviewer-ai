@@ -12,3 +12,7 @@ dist/
 docs/.bkit-memory.json
 docs/.pdca-snapshots/
 docs/.pdca-status.json
+.pdca-status.json
+
+# 프로젝트 무관 파일
+빌링.png

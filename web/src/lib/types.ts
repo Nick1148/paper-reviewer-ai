@@ -3,6 +3,9 @@ export interface ArxivCategory {
   name: string;
   description: string;
   slug: string;
+  nameKo: string;
+  descriptionSimple: string;
+  icon: string;
 }
 
 export interface NewsletterSubscriber {
@@ -10,9 +13,16 @@ export interface NewsletterSubscriber {
   subscribedAt: string;
 }
 
+export interface GlossaryTerm {
+  term: string;
+  fullName: string;
+  explanation: string;
+}
+
 export interface PaperExplanation {
   id: string;
   title: string;
+  titleKo: string;
   tldr: string;
   summary: string;
   keyFindings: string[];
@@ -22,4 +32,16 @@ export interface PaperExplanation {
   arxivUrl: string;
   publishedDate: string;
   authors: string[];
+  difficulty: "beginner" | "intermediate" | "advanced";
+  beginnerSummary: string;
+  glossary: GlossaryTerm[];
+}
+
+export interface GlossaryEntry {
+  term: string;
+  fullName: string;
+  nameKo: string;
+  category: string;
+  shortDesc: string;
+  analogy: string;
 }

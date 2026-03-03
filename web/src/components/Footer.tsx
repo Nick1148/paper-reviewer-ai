@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getArxivCategories } from "@/lib/data";
+import { navItems } from "@/lib/navigation";
+import Logo from "./Logo";
 
 export default function Footer() {
   const categories = getArxivCategories();
@@ -9,14 +11,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="col-span-1 md:col-span-2">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-sm font-bold text-white">
-                AI
-              </div>
-              <span className="text-lg font-bold text-gray-900 dark:text-white">
-                논문읽어주는AI
-              </span>
-            </Link>
+            <Logo />
             <p className="mt-4 max-w-md text-sm leading-relaxed text-gray-600 dark:text-gray-400">
               매일 최신 AI 논문을 5분 만에 이해할 수 있는 한국어 해설을
               제공합니다. 연구자, 개발자, AI에 관심 있는 모든 분들을 위한
@@ -26,7 +21,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-              arXiv 카테고리
+              분야별 논문
             </h3>
             <ul className="mt-4 space-y-2">
               {categories.slice(0, 5).map((cat) => (
@@ -35,7 +30,7 @@ export default function Footer() {
                     href={`/papers?category=${cat.id}`}
                     className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
                   >
-                    {cat.id} - {cat.name}
+                    {cat.icon} {cat.nameKo}
                   </Link>
                 </li>
               ))}
@@ -47,30 +42,16 @@ export default function Footer() {
               바로가기
             </h3>
             <ul className="mt-4 space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  홈
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/papers"
-                  className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  논문
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/newsletter"
-                  className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-                >
-                  뉴스레터
-                </Link>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

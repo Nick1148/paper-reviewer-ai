@@ -28,11 +28,13 @@ export default function SearchBar({ onSearch, placeholder = "논문 제목, 키�
 
   return (
     <div className="relative w-full">
+      <label htmlFor="paper-search" className="sr-only">논문 검색</label>
       <svg
         className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
+        aria-hidden="true"
       >
         <path
           strokeLinecap="round"
@@ -42,6 +44,7 @@ export default function SearchBar({ onSearch, placeholder = "논문 제목, 키�
         />
       </svg>
       <input
+        id="paper-search"
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}

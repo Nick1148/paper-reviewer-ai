@@ -2,10 +2,19 @@
 
 매일 최신 AI/ML 논문을 arXiv에서 자동 수집하고, AI가 한국어로 해설하여 웹사이트와 뉴스레터로 제공하는 서비스입니다.
 
+## 프로젝트 히스토리
+
+이 프로젝트는 원래 [AI Content Factory](https://github.com/Nick1148/ai-content-factory) 프로젝트의 일부였으나, 2026-03-03에 별도 프로젝트로 분리되었습니다.
+
+- **AI Content Factory** (`ai-content-factory`): AI 도구 수집 + 논문 해설 + 대시보드 + 프라이싱이 포함된 상품화 버전 (데모/포트폴리오)
+- **논문읽어주는AI** (`paper-reviewer-ai`): 논문 해설에 집중한 독립 서비스 ← **이 프로젝트**
+
+두 프로젝트는 동일한 기술 스택(Hono, Next.js, Supabase, Gemini)을 공유하지만, 목적과 기능 범위가 다릅니다.
+
 ## 프로젝트 구조
 
 ```
-teams/
+paper-reviewer-ai/
 ├── src/                     # 백엔드 파이프라인 (TypeScript)
 │   ├── collectors/          # 데이터 수집 (arXiv)
 │   ├── ai/                  # AI 논문 해설 생성 (Gemini API)
@@ -100,3 +109,10 @@ cd web && npm run dev
 - 함수명/변수명: camelCase
 - 타입명: PascalCase
 - 주석 및 로그: 한국어
+
+## 관련 프로젝트
+
+| 프로젝트 | Repo | 설명 |
+|----------|------|------|
+| AI Content Factory | [Nick1148/ai-content-factory](https://github.com/Nick1148/ai-content-factory) | AI 도구 + 논문 통합 상품화 버전 |
+| 논문읽어주는AI | [Nick1148/paper-reviewer-ai](https://github.com/Nick1148/paper-reviewer-ai) | 논문 해설 전용 서비스 (이 repo) |
